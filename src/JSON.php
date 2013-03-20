@@ -35,6 +35,21 @@
 
 
 		/**
+		 *
+		 */
+		static private function normalize($data)
+		{
+			foreach ($data as $property => $value) {
+				if ((is_object($value) && get_class($value) == 'stdClass') || is_array($value)) {
+					$data->{$property} = new self($value);
+				}
+			}
+
+			return $data;
+		}
+
+
+		/**
 		 * Create a new JSON object
 		 *
 		 * You can create a JSON object from a string of JSON by simply passing the JSON to the
@@ -43,9 +58,12 @@
 		 *
 		 * @access public
 		 * @var mixed $subject The subject to seed the object with.
+		 * @var boolean $assoc When TRUE, objects will be converted to associative arrays
+		 * @var int $depth User specified recursion depth
+		 * @var int $options Bitmask of JSON decode options, see `json_decode()`
 		 * @return void
 		 */
-		public function __construct($subject = NULL)
+		public function __construct($subject = NULL, $assoc = FALSE, $depth = 512, $options = 0)
 		{
 			if ($subject === NULL) {
 				$this->data = new \stdClass();
@@ -63,12 +81,12 @@
 					//
 
 					$this->data = ($subject instanceof \JSONSerializable)
-						? json_decode(json_encode($subject))
+						? json_decode(json_encode($subject), $assoc, $depth, $options)
 						: (object) get_object_vars($subject);
 				}
 
 			} elseif (!is_array($subject)) {
-				$this->data = json_decode($subject);
+				$this->data = json_decode($subject, $assoc, $depth, $options);
 
 				if (!$this->data) {
 					throw new ProgrammerException(
@@ -89,6 +107,8 @@
 				$this->isArray = TRUE;
 				$this->data    = (object) $this->data;
 			}
+
+			$this->data = self::normalize($this->data);
 		}
 
 
@@ -101,8 +121,8 @@
 		 */
 		public function __get($name)
 		{
-			return isset($this->data->$name)
-				? $this->data->$name
+			return isset($this->data->{$name})
+				? $this->data->{$name}
 				: NULL;
 		}
 
@@ -116,7 +136,7 @@
 		 */
 		public function __isset($name)
 		{
-			return isset($this->data->$name);
+			return isset($this->data->{$name});
 		}
 
 
@@ -129,7 +149,7 @@
 		 */
 		public function __unset($name)
 		{
-			unset($this->data->$name);
+			unset($this->data->{$name});
 		}
 
 
@@ -143,7 +163,7 @@
 		 */
 		public function __set($name, $value)
 		{
-			$this->data->$name = $value;
+			$this->data->{$name} = $value;
 		}
 
 
@@ -160,7 +180,7 @@
 		 */
 		public function append($name, $subject = NULL)
 		{
-			$this->data->$name = new self($subject);
+			$this->data->{$name} = new self($subject);
 			return $this;
 		}
 
@@ -235,7 +255,7 @@
 			$properties = func_get_args();
 
 			foreach ($properties as $property) {
-				unset($this->data->$property);
+				unset($this->data->{$property});
 			}
 
 			return $this;

@@ -54,6 +54,13 @@ Whether or not the original subject was an array
 
 
 ## Methods
+### Static Methods
+<hr />
+
+#### <span style="color:#3e6a6e;">normalize()</span>
+
+
+
 
 ### Instance Methods
 <hr />
