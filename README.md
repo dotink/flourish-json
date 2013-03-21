@@ -102,6 +102,6 @@ $json->user->addresses->remove(0);
 
 Once you're done manipulating your original input, you can go ahead and spit out the new JSON string:
 
-```
+```php
 $json->compose();
 ```
