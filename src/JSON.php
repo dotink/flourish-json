@@ -10,7 +10,7 @@
 	 * @copyright  Copyright (c) 2012 Will Bond, others
 	 * @author     Matthew J. Sahagian [mjs] <msahagian@dotink.org>
 	 *
-	 * @license    http://flourishlib.com/license
+	 * @license    Please see the LICENSE file at the root of this distribution
 	 *
 	 * @package    Flourish
 	 */

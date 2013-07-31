@@ -2,7 +2,7 @@
 ## A basic JSON manipulation class.
 
 _Copyright (c) 2012 Will Bond, others_.
-[http://flourishlib.com/license](http://flourishlib.com/license)
+_Please see the LICENSE file at the root of this distribution_
 
 ### Details
 
