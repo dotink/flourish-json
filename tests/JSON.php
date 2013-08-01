@@ -15,11 +15,22 @@
 			//
 
 			'Instantiation' => function($data, $shared) {
-				$json1 = new JSON();
-				$json2 = new JSON('{}');
-				$json3 = new JSON('{"property":"value"}');
-				$json4 = new JSON(['property' => 'value']);
-				$json5 = new JSON($json3);
+				$json1  = new JSON();
+				$json2  = new JSON('{}');
+				$json3  = new JSON('{"property":"value"}');
+				$json4  = new JSON(['property' => 'value']);
+				$json5  = new JSON($json3);
+				$json6  = new JSON('false');
+				$json7  = new JSON('true');
+				$json8  = new JSON('null');
+				$json9  = new JSON('5');
+				$json10 = new JSON(FALSE);
+				$json11 = new JSON(TRUE);
+				$json12 = new JSON(NULL);
+				$json13 = new JSON(5);
+				$json14 = new JSON('testing');
+				$json15 = new JSON('"testing"');
+
 
 				$std_object = new stdClass();
 				$std_object->property = 'value';
@@ -39,6 +50,36 @@
 
 					-> using($json5)
 					-> equals($std_object)
+
+					-> using($json6)
+					-> equals(FALSE, EXACTLY)
+
+					-> using($json7)
+					-> equals(TRUE, EXACTLY)
+
+					-> using($json8)
+					-> equals(NULL, EXACTLY)
+
+					-> using($json9)
+					-> equals(5, EXACTLY)
+
+					-> using($json10)
+					-> equals(FALSE, EXACTLY)
+
+					-> using($json11)
+					-> equals(TRUE, EXACTLY)
+
+					-> using($json12)
+					-> equals(NULL, EXACTLY)
+
+					-> using($json13)
+					-> equals(5, EXACTLY)
+
+					-> using($json14)
+					-> equals('testing', EXACTLY)
+
+					-> using($json15)
+					-> equals('testing', EXACTLY)
 				;
 
 				assert('Dotink\Flourish\JSON::$isArray')

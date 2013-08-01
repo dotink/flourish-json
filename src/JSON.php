@@ -65,19 +65,21 @@
 		 */
 		public function __construct($subject = NULL, $assoc = FALSE, $depth = 512, $options = 0)
 		{
-			if ($subject === NULL) {
+			if (!func_num_args()) {
 				$this->data = new \stdClass();
+				return;
+			}
 
-			} elseif (is_object($subject)) {
-
+			if (is_object($subject)) {
 				if (get_class($subject) == __CLASS__) {
 					$this->data = $subject->data;
 
 				} else {
 
 					//
-					// By encoding and decoding the subject immediately we reduce it to it's
-					// official serialized structure.  Otherwise, we assume the object handles
+					// If an object is JSONSerializable, by encoding and decoding it immediately
+					// we reduce it to it's official serialized structure.  Otherwise, we simply
+					// typecast public properties.
 					//
 
 					$this->data = ($subject instanceof \JSONSerializable)
@@ -85,17 +87,14 @@
 						: (object) get_object_vars($subject);
 				}
 
-			} elseif (!is_array($subject)) {
-				$this->data = json_decode($subject, $assoc, $depth, $options);
-
-				if (!$this->data) {
-					throw new ProgrammerException(
-						'Cannot parse JSON subject, invalid format.'
-					);
+			} else {
+				if (is_string($subject)) {
+					$this->data = json_decode($subject);
 				}
 
-			} else {
-				$this->data = $subject;
+				if (!is_string($subject) || json_last_error() != JSON_ERROR_NONE) {
+					$this->data = $subject;
+				}
 			}
 
 			//
