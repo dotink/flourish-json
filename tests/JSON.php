@@ -120,7 +120,15 @@
 					"hero": "Linux Torvalds"
 				}');
 
+				$json->append('hobbies', ['homebrew', 'coding', 'philosophy']);
+				$json->append('feelings', [
+					'jesus' => 'fake',
+					'evolution' => TRUE
+				]);
+
 				assert($json->contacts->cat)->equals('Marx DaCat');
+				assert($json->feelings->jesus)->equals('fake');
+				assert($json->feelings->evolution)->equals(true);
 			},
 
 			//
