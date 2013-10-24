@@ -2,7 +2,7 @@
 	"name": "dotink/flourish-json",
 	"description": "A JSON manipulation class",
 	"keywords": ["json"],
-	"license": "AGPL 3.0",
+	"license": "AGPL-3.0",
 	"type": "opus-package",
 	"authors": [
 		{
