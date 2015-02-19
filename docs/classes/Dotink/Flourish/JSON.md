@@ -1,8 +1,8 @@
 # JSON
 ## A basic JSON manipulation class.
 
-_Copyright (c) 2012 Will Bond, others_.
-_Please see the LICENSE file at the root of this distribution_
+_Copyright (c) 2007-2015 Will Bond, Matthew J. Sahagian, others_.
+_Please reference the LICENSE.md file at the root of this distribution_
 
 ### Details
 
@@ -23,6 +23,18 @@ by passing it a JSON string.
 		<th>Email</th>
 	</thead>
 	<tbody>
+	
+		<tr>
+			<td>
+				Will Bond
+			</td>
+			<td>
+				wb
+			</td>
+			<td>
+				will@flourishlib.com
+			</td>
+		</tr>
 	
 		<tr>
 			<td>

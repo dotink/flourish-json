@@ -7,12 +7,13 @@
 	 * can be manipulated with ease and then encoded.  You can also use it to decode JSON simply
 	 * by passing it a JSON string.
 	 *
-	 * @copyright  Copyright (c) 2012 Will Bond, others
-	 * @author     Matthew J. Sahagian [mjs] <msahagian@dotink.org>
+	 * @copyright Copyright (c) 2007-2015 Will Bond, Matthew J. Sahagian, others
+	 * @author Will Bond [wb] <will@flourishlib.com>
+	 * @author Matthew J. Sahagian [mjs] <msahagian@dotink.org>
 	 *
-	 * @license    Please see the LICENSE file at the root of this distribution
+	 * @license Please reference the LICENSE.md file at the root of this distribution
 	 *
-	 * @package    Flourish
+	 * @package Flourish
 	 */
 	class JSON implements \JSONSerializable
 	{
