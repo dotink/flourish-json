@@ -1,5 +1,7 @@
 A basic JSON manipulation class.
-============
+=======
+
+[![Build Status](https://travis-ci.org/dotink/flourish-json.svg?branch=master)](https://travis-ci.org/dotink/flourish-json)
 
 JSON is a class for instantiation objects which allow you to easily manipulate and compose JSON and JSON serializable objects.  This offers additional functionality over working with `stdClass` objects returned by `json_decode()`.
 
