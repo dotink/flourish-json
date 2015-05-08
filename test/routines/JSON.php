@@ -197,6 +197,42 @@
 				}');
 
 				assert($json->compose())->equals(json_encode($json));
+			},
+
+
+			//
+			//
+			//
+
+			'asArray' => function($data) {
+
+				$json = new JSON('{
+					"menu": {
+						"id": "file",
+						"value": "File",
+						"popup": {
+							"menuitem": [
+								{"value": "New", "onclick": "CreateNewDoc()"},
+								{"value": "Open", "onclick": "OpenDoc()"},
+								{"value": "Close", "onclick": "CloseDoc()"}
+							]
+						}
+					}
+				}');
+
+				assert($json->asArray())->equals([
+					'menu' => [
+						'id'    => 'file',
+						'value' => 'File',
+						'popup' => [
+							'menuitem' => [
+								['value' => 'New', 'onclick' => 'CreateNewDoc()'],
+								['value' => 'Open', 'onclick' => 'OpenDoc()'],
+								['value' => 'Close', 'onclick' => 'CloseDoc()'],
+							]
+						]
+					]
+				]);
 			}
 		]
 	];

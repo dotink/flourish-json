@@ -43,6 +43,9 @@
 			foreach ($data as $property => $value) {
 				if ((is_object($value) && get_class($value) == 'stdClass') || is_array($value)) {
 					$data->{$property} = new self($value);
+
+				} else {
+					$data->{$property} = $value;
 				}
 			}
 
@@ -202,6 +205,8 @@
 
 			if (!func_num_args()) {
 				$data = $this->data;
+			} elseif ($data instanceof self) {
+				$data = $data->data;
 			}
 
 			foreach ($data as $property => $value) {
